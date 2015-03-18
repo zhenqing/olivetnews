@@ -46,12 +46,9 @@
                     	<div id="MainNav">
                             <ul>
                             	<li class="Current"><a href="index.html" title="Olivet University General News">Home</a></li>
-                                <li ><a href="category.html?opt=otcs" title="Olivet University Theology">Theology</a></li>
-                                <li ><a href="category.html?opt=jcm" title="Olivet University Music">Music</a></li>
-                                <li ><a href="category.html?opt=ocj" title="Olivet University Jounalism">Journalism</a></li>
-                                <li ><a href="category.html?opt=ocad" title="Olivet University Arts & Design">Arts &amp; Design</a></li>
-                                <li ><a href="category.html?opt=ocit" title="Olivet University IT">IT</a></li>
-				<li class="lastone"><a href="category.html?opt=ocb" title="Olivet University Business">Business</a></li>
+                            	<?php foreach ($this->categories as $category):?>
+                                <li ><a href="category.html?opt=otcs" title="<?php echo "Olivet University ".$category->getName();?>"><?php echo $category->getName();?></a></li>
+                            <?php endforeach;?>
                             </ul>
                         </div>
                         <!-- MainNav End -->

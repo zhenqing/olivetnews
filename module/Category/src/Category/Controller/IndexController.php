@@ -10,12 +10,13 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-    	
+    	$categoryService = $this->getServiceLocator()->get("Category\Model\CategoryTable");
+        $categories = $categoryService->fetchAll();
+        $categories->buffer();
+
     	$postService = $this->getServiceLocator()->get("Category\Model\PostTable");
-		
 		$posts = $postService->fetchAll();
-		
-		return array('posts'=>$posts);
+		return array('categories'=>$categories,'posts'=>$posts);
     }
    
 }
