@@ -1,1 +1,18 @@
-<h1>hello world</h1>
+<h1>Category List</h1>
+<table class="table">
+	<thead>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Position</th>
+	</thead>
+	<tbody>
+		<?php foreach($this->categories as $category):?>
+			<tr>
+				<td><?php echo $category->getId()?></td>
+				<td><?php echo $category->getName()?></td>
+				<td><?php echo $category->getPosition()?></td>
+				
+			</tr>
+		<?php endforeach;?>
+	</tbody>
+</table>
