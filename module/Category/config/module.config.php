@@ -12,7 +12,7 @@ return array(
             'home' => array(
                  'type'    => 'Zend\Mvc\Router\Http\Literal',
                  'options' => array(
-                     'route'    => '/post',
+                     'route'    => '/',
                      'defaults' => array(
                          'controller' => 'Category\Controller\Index',
                          'action'     => 'index',
@@ -26,6 +26,16 @@ return array(
                      'defaults' => array(
                          'controller' => 'Category\Controller\Category',
                          'action'     => 'index',
+                     ),
+                 ),
+             ),
+             'category_manage' => array(
+                 'type'    => 'Zend\Mvc\Router\Http\Literal',
+                 'options' => array(
+                     'route'    => '/category/manage',
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Category',
+                         'action'     => 'manage',
                      ),
                  ),
              ),
