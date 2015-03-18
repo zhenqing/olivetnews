@@ -13,7 +13,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `olivetnews`.`news`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `olivetnews`.`news` (
+CREATE  TABLE IF NOT EXISTS `olivetnews`.`posts` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `title` TEXT NULL ,
   `content` TEXT NULL ,
@@ -28,7 +28,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `olivetnews`.`users`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `olivetnews`.`users` (
+CREATE  TABLE IF NOT EXISTS `olivetnews`.`admins` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `username` VARCHAR(255) NULL ,
   `password` VARCHAR(255) NULL ,
