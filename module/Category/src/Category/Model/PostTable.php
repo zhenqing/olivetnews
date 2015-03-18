@@ -20,6 +20,7 @@ class PostTable{
 	function fetchAll() {
 		$select = $this->tableGateway->getSql()->select();
 		$select->order('create_time desc');
+		$select->limit(12);
 		return $this->tableGateway->selectWith($select);
 	}
 	
