@@ -6,6 +6,8 @@ namespace Category;
 use Zend\Mvc\MvcEvent;
 use Category\Model\Category;
 use Category\Model\CategoryTable;
+use Category\Model\Post;
+use Category\Model\PostTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 class Module
@@ -39,12 +41,24 @@ class Module
                      $table = new Category();
                      return $table;
                  },
-                 'CategoryTableGateway'=>'Category\Model\CategoryTableFactory',
+                 'CategoryTableFactory'=>'Category\Model\CategoryTableFactory',
                  'CategoryTableGateway' => function ($sm) {
                      $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                      $resultSetPrototype = new ResultSet();
                      $resultSetPrototype->setArrayObjectPrototype(new Category());
                      return new TableGateway('categories', $dbAdapter, null, $resultSetPrototype);
+                 },
+                 'Category\Model\PostTable' =>  function($sm) {
+                     $tableGateway = $sm->get('PostTableGateway');
+                     $table = new PostTable($tableGateway);
+                     return $table;
+                 },
+                 'PostTableGateway' => function ($sm) {
+                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                    $categoryService = $sm->get('Category\Model\CategoryTable');
+                     $resultSetPrototype = new ResultSet();
+                     $resultSetPrototype->setArrayObjectPrototype(new Post($categoryService));
+                     return new TableGateway('posts', $dbAdapter, null, $resultSetPrototype);
                  }
              ),
          );
