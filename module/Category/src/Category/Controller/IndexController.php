@@ -28,4 +28,5 @@ class IndexController extends AbstractActionController
     $paginator->setItemCountPerPage(2);
     return array('paginator'=>$paginator);
     }
+    
 }

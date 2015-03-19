@@ -100,6 +100,16 @@ return array(
                      ),
                  ),
              ),
+             'post_add' => array(
+                 'type'    => 'Zend\Mvc\Router\Http\Literal',
+                 'options' => array(
+                     'route'    => '/post/add',
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Post',
+                         'action'     => 'add',
+                     ),
+                 ),
+             ),
          ),
      ),
      'view_manager' => array(

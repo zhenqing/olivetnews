@@ -5,9 +5,23 @@ namespace Category\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-
+use Category\Form\PostForm;
+use Category\Model\Post;
 class PostController extends AbstractActionController
 {
+  protected $post;
+    function _initPost($id=null){
+    if($id == null){
+      $id = $this->params()->fromRoute('id',0);
+    }
+    if ($id < 1) {
+      $this->post = new Post();
+    } else {
+      $postTable = $this->getServiceLocator()->get("Category\Model\PostTable");
+      $post = $postTable->getById($id);
+      $this->post = $post;
+    }
+  }
     public function indexAction()
     {
     	
@@ -34,6 +48,37 @@ class PostController extends AbstractActionController
        }
       
     }
+    public function addAction(){
+      $form = new PostForm();
+    
+    if($this->getRequest()->isPost()){
+      $this->_initPost();
+      $this->savePostFromCategory($form);
+    }
+    
+    return array('form' => $form);
+    }
+    /**
+   * 
+   * Save the category after user submission
+   */
+  protected function savePostFromCategory($form){
+    $data = $this->getRequest()->getPost();
+      //@todo: validate the data
+    $form->setData($data);
+        if ($form->isValid()) {
+      
+      $this->post->exchangeArray($form->getData());
+      $postTable = $this->getServiceLocator()->get("Category\Model\PostTable");
+      $this->post = $postTable->savePost($this->post);
+        
+      if($id = $this->post->getId()){
+        $this->redirect()->toRoute('home');
+      }
+        }else{
+          
+        }
+  }
    
    
 }

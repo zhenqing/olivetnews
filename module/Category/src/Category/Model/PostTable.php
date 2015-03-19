@@ -119,6 +119,27 @@ class PostTable{
 		$select->where->equalTo('id',$id);
 		return $this->tableGateway->selectWith($select);
 	}
-	
+	public function savePost(Post $post){
+		
+		$data = array(
+			'title'=>$post->getTitle(),
+			'content'=>$post->getContent(),
+			'author'=>$post->getAuthor(),
+			'category_name'=>$post->getCategoryName(),
+			'create_time'=>now(),
+			'imgurl'=>$post->getImgurl()
+		);
+		
+		if ($post->getId()){
+			$this->tableGateway->update($data,array("id"=>$post->getId()));
+		}else{
+			$this->tableGateway->insert($data);
+			$id = $this->tableGateway->lastInsertValue;
+			
+			$post->setId($id);
+		}
+		
+		return $post;
+	}
 	
 }
