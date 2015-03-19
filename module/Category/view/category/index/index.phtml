@@ -27,14 +27,14 @@
                         
             <img src="http://www.olivetuniversity.edu/images_articles/files//Architecture5.jpg" alt="Olivet to Establish New College of Architecture, Engineering and Construction"/>                   
                         <h3><?php echo $post->getCreate_time();?></h3>
-                            <h2><a href="article.html"><a href="article.html"><?php echo $post->getTitle();?></a></h2>
-                            <h4><?php echo $post->getExcerpt();?> <a href="articles/2015/03/06/926/olivet-university-olivet-to-establish-new-college-of-architecture--engineering-and-construction.htm">Read more</a></h4>
+                            <h2><a href="/post/view/<?php echo $post->getId();?>"><?php echo $post->getTitle();?></a></h2>
+                            <h4><?php echo nl2br($post->getExcerpt());?> <a href="/post/view/<?php echo $post->getId();?>">Read more</a></h4>
                                                         
                         </div>
             <?php else:?>          
                         	 <h3><?php echo $post->getCreate_time();?></h3>
-                           <h2><a href="article.html"><?php echo $post->getTitle();?></a></h2>
-                           <p><?php echo $post->getExcerpt();?></p>
+                           <h2><a href="/post/view/<?php echo $post->getId();?>"><?php echo $post->getTitle();?></a></h2>
+                           <p><?php echo nl2br($post->getExcerpt());?></p>
                         
 			<?php endif;?>			   
         <?php endforeach;?>
