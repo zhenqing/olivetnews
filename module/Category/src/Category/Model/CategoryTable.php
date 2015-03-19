@@ -21,7 +21,7 @@ class CategoryTable{
 		$select = $sql->select();
 		$select->where(array('id'=>$id));
 		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet;
+		return $resultSet->current();
 	}
 
 	

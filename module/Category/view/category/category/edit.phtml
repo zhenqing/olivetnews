@@ -57,28 +57,38 @@
                         </style>															<!-- MainNews Start -->
                         <div id="MainNewsBox">
                             <h2>Edit Category</h2>
-                            <form action="admin_index.html">
-                            <table>
-                                <tr>
-                                    <th>Title</th>
-                                    <td><input /></td>
-                                </tr>
-                                
-                                
-                                <tr>
-                                    <th>Image</th>
-                                    <td><input type="file"></td>
-                                </tr>
-				<tr>
-                                    <th>Position</th>
-                                    <td><input /></td>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <td><input type="submit" /></td>
-                                </tr>
-                            </table>
-                            </form>
+                            <?php 
+                            $form->setAttribute('action', $this->url('category_edit',
+                                array(
+                                    'action'=>'edit',
+                                    'id'=>$this->id,
+                                    )
+                                ));
+                            $form->prepare();
+                            echo $this->form()->openTag($form);
+                            echo $this->formHidden($form->get('csrf'));
+                            // $this->form()->setDefault('name',$this->category->getName());
+                            ?>
+    <div class="form-group">
+        <?php echo $this->formHidden($form->get('id'));?>
+        <label>Name</label>
+        <?php echo $this->formInput($form->get('name'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('name'));?></span>
+    </div>
+    <div class="form-group">
+        <label >Image</label>
+        <?php echo $this->formFile($form->get('imgurl'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('imgurl'));?></span>
+    </div>
+    
+    <div class="form-group">
+        <label>Position</label>
+        <?php echo $this->formInput($form->get('position'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('position'));?></span>
+    </div>
+    
+    <button type="submit" class="btn btn-default">Submit</button>
+<?php echo $this->form()->closeTag();?>
                             <br/>
                         </div>
                         <!-- NewsArcheive End -->

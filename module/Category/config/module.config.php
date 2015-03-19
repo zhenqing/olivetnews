@@ -50,12 +50,28 @@ return array(
                  ),
              ),
              'category_edit' => array(
-                 'type'    => 'Zend\Mvc\Router\Http\Literal',
+                 'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/category/edit',
+                     'route'    => '/category/edit/[:categoryid]',
+                        'constraints'=>array(
+                        'id'=>'[0-9]+'
+                        ),
                      'defaults' => array(
                          'controller' => 'Category\Controller\Category',
                          'action'     => 'edit',
+                     ),
+                 ),
+             ),
+             'category_delete' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/category/delete/[:categoryid]',
+                        'constraints'=>array(
+                        'id'=>'[0-9]+'
+                        ),
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Category',
+                         'action'     => 'delete',
                      ),
                  ),
              ),

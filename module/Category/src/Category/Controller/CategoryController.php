@@ -28,8 +28,8 @@ class CategoryController extends AbstractActionController
       $categories = $categoryService->fetchAll();
       $categories->buffer();
 
-    	$postService = $this->getServiceLocator()->get("Category\Model\PostTable");
-		  $posts = $postService->getPostsByCategoryId($cat_id);
+    	$postService = $this->getServiceLocator()->get("Category\Model\CategoryTable");
+		  $posts = $postService->getCategorysByCategoryId($cat_id);
 		return array('categories'=>$categories,'cat_id'=>$cat_id,'posts'=>$posts);
     }
    public function manageAction()
@@ -44,9 +44,9 @@ class CategoryController extends AbstractActionController
     public function addAction(){
       $form = new CategoryForm();
     
-    if($this->getRequest()->isPost()){
+    if($this->getRequest()->isCategory()){
       $this->_initCategory();
-      $this->saveCategoryFromPost($form);
+      $this->saveCategoryFromCategory($form);
     }
     
     return array('form' => $form);
@@ -55,8 +55,8 @@ class CategoryController extends AbstractActionController
    * 
    * Save the category after user submission
    */
-  protected function saveCategoryFromPost($form){
-    $data = $this->getRequest()->getPost();
+  protected function saveCategoryFromCategory($form){
+    $data = $this->getRequest()->getCategory();
       //@todo: validate the data
     $form->setData($data);
         if ($form->isValid()) {
@@ -73,8 +73,68 @@ class CategoryController extends AbstractActionController
         }
   }
 
-     public function editAction(){
-      return new ViewModel();
-      
+     public function editAction()
+  {
+     $id = (int) $this->params()->fromRoute('categoryid', 0);
+         if (!$id) {
+             return $this->redirect()->toRoute('category', array(
+                 'action' => 'add'
+             ));
+         }
+         $categoryTable = $this->getServiceLocator()->get("Category\Model\CategoryTable");
+          
+         // Get the Album with the specified id.  An exception is thrown
+         // if it cannot be found, in which case go to the index page.
+         try {
+           $category = $categoryTable->getById($id);
+         }
+         catch (\Exception $ex) {
+             return $this->redirect()->toRoute('category', array(
+                 'action' => 'index'
+             ));
+         }
+
+         $form  = new CategoryForm();
+         $form->bind($category);
+         $form->get('submit')->setAttribute('value', 'Edit');
+
+         $request = $this->getRequest();
+         if ($request->isPost()) {
+             $form->setInputFilter($category->getInputFilter());
+             $form->setData($request->getPost());
+
+             if ($form->isValid()) {
+                 $categoryTable->saveCategory($category);
+
+                 // Redirect to list of albums
+                 return $this->redirect()->toRoute('category');
+             }
+         }
+
+         return array(
+             'id' => $id,
+             'form' => $form,
+         );
+  }
+  public function deleteAction(){
+    $this->_initCategory();
+    $categoryTable = $this->getServiceLocator()->get("Blog\Model\BlogTable");
+    $categoryTable->deleteBlog($this->category);
+    $this->redirect()->toRoute('category_home');
+  }
+  public function viewAction()
+  {
+    try{
+      $this->_initCategory(); 
+      if (! is_int($this->category->getId()) ){
+        throw new \Exception("No category found");
+      }
+        
+      return array(
+            'category'=>$this->category
+      );
+    }catch (\Exception $e){
+      //todo: add error handling functions.
     }
+  }
 }
