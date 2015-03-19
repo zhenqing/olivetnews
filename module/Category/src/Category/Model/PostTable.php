@@ -113,7 +113,12 @@ class PostTable{
 		}
 		
 	}
-	
+	function fetchById($id){
+		// return $this->tableGateway->select();
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->equalTo('id',$id);
+		return $this->tableGateway->selectWith($select);
+	}
 	
 	
 }

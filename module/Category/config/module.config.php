@@ -4,6 +4,8 @@ return array(
          'invokables' => array(
              'Category\Controller\Index' => 'Category\Controller\IndexController',
              'Category\Controller\Category' => 'Category\Controller\CategoryController',
+            'Category\Controller\Post' => 'Category\Controller\PostController',
+         
          ),
      ),
     
@@ -72,6 +74,19 @@ return array(
                      'defaults' => array(
                          'controller' => 'Category\Controller\Category',
                          'action'     => 'delete',
+                     ),
+                 ),
+             ),
+             'post_view' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/post/view/[:id]',
+                        'constraints'=>array(
+                        'id'=>'[0-9]+'
+                        ),
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Post',
+                         'action'     => 'view',
                      ),
                  ),
              ),
