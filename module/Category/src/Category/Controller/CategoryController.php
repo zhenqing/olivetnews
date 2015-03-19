@@ -5,7 +5,7 @@ namespace Category\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-
+use Category\Form\CategoryForm;
 class CategoryController extends AbstractActionController
 {
     public function indexAction()
@@ -29,8 +29,14 @@ class CategoryController extends AbstractActionController
           return array('categories'=>$categories);
     }
     public function addAction(){
-      return new ViewModel();
-
+      $form = new CategoryForm();
+    
+    if($this->getRequest()->isPost()){
+      $this->_initPost();
+      $this->saveBlogFromPost($form);
+    }
+    
+    return array('form' => $form);
     }
      public function editAction(){
       return new ViewModel();
