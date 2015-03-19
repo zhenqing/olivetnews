@@ -27,16 +27,15 @@ class CategoryForm extends Form
              'type' => 'Hidden',
         ));
         
-        //title field
         $this->add(array(
-             'name' => 'title',
+             'name' => 'name',
              'type' => 'Text',
              'attributes'=>array(
                 'placeholder'=>'Category',
                 'class'=>'form-control', 
              ),
              'options' => array(
-                 'label' => 'Title',
+                 'label' => 'Name',
             ),
         ));
         

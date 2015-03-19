@@ -23,4 +23,29 @@ class CategoryTable{
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+
+	
+	public function saveCategory(Category $category){
+		
+		$data = array(
+			'name'=>$category->getName(),
+			'position'=>$category->getPosition(),
+			'imgurl'=>$category->getImgurl()
+		);
+		
+		if ($category->getId()){
+			$this->tableGateway->update($data,array("id"=>$category->getId()));
+		}else{
+			$this->tableGateway->insert($data);
+			$id = $this->tableGateway->lastInsertValue;
+			
+			$category->setId($id);
+		}
+		
+		return $category;
+	}
+	
+	public function deleteCategory(Category $category){
+		return $this->tableGateway->delete(array("id"=>$category->getId()));
+	}
 }
