@@ -13,7 +13,12 @@ class SuccessController extends AbstractActionController
                  ->get('AuthService')->hasIdentity()){
             return $this->redirect()->toRoute('login');
         }
-         
+        $postService = $this->getServiceLocator()->get("Category\Model\PostTable");
+		$paginator = $postService->fetchAll(true);
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(2);
+     	
+		return array('paginator'=>$paginator); 
         return new ViewModel();
     }
 }
