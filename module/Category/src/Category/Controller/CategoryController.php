@@ -38,8 +38,7 @@ class CategoryController extends AbstractActionController
     }
    public function manageAction()
     {
-    	
-    	$categoryService = $this->getServiceLocator()->get("Category\Model\CategoryTable");
+    	     $categoryService = $this->getServiceLocator()->get("Category\Model\CategoryTable");
           var_dump(get_class($categoryService));
           $categories = $categoryService->fetchAll();
           $categories->buffer();
