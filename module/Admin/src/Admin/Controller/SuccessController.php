@@ -21,4 +21,5 @@ class SuccessController extends AbstractActionController
 		return array('paginator'=>$paginator); 
         return new ViewModel();
     }
+    
 }

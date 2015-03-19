@@ -12,11 +12,11 @@ class CategoryController extends AbstractActionController
     {
     	$cat_id=$this->params()->fromRoute('categoryid');
     	$categoryService = $this->getServiceLocator()->get("Category\Model\CategoryTable");
-        $categories = $categoryService->fetchAll();
-        $categories->buffer();
+      $categories = $categoryService->fetchAll();
+      $categories->buffer();
 
     	$postService = $this->getServiceLocator()->get("Category\Model\PostTable");
-		$posts = $postService->getPostsByCategoryId($cat_id);
+		  $posts = $postService->getPostsByCategoryId($cat_id);
 		return array('categories'=>$categories,'cat_id'=>$cat_id,'posts'=>$posts);
     }
    public function manageAction()
@@ -27,5 +27,13 @@ class CategoryController extends AbstractActionController
           $categories = $categoryService->fetchAll();
           $categories->buffer();
           return array('categories'=>$categories);
+    }
+    public function addAction(){
+      return new ViewModel();
+
+    }
+     public function editAction(){
+      return new ViewModel();
+      
     }
 }

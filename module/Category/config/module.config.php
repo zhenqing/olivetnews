@@ -39,6 +39,26 @@ return array(
                      ),
                  ),
              ),
+             'category_add' => array(
+                 'type'    => 'Zend\Mvc\Router\Http\Literal',
+                 'options' => array(
+                     'route'    => '/category/add',
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Category',
+                         'action'     => 'add',
+                     ),
+                 ),
+             ),
+             'category_edit' => array(
+                 'type'    => 'Zend\Mvc\Router\Http\Literal',
+                 'options' => array(
+                     'route'    => '/category/edit',
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Category',
+                         'action'     => 'edit',
+                     ),
+                 ),
+             ),
          ),
      ),
      'view_manager' => array(

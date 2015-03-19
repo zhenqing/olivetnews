@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -18,19 +19,12 @@
       <div id="HeaderWrapper">
             <div id="Header">
                 <h1><a href="index.html" title="Olivet University News"><span class="non_disply"><strong>OLIVET UNIVERSITY NEWS | Olivet News</strong></span></a></h1>
-               
-		<div id="HeaderSearchBox">
-			
+                <div id="HeaderSearchBox">
 				<form name="topsearch" action="search.html" id="top_search_box" onSubmit="return chk_search()">
 					
 						<input type="text" name="q">
 					</form>
-				
-				 <a href="login.html">Admin Login</a>
-				
-				
                 </div>
-		
             </div>
         </div>
     </div>
@@ -41,42 +35,61 @@
         	<div id="ContentsWrapper">
             	<div id="Contents">
                 	<div id="ConLeft">
-			<!-- MainNav Start -->
-                    	<div id="MainNav">
+			
+                        <div id="MainNav">
                             <ul>
-                            	<li class="Current"><a href="http://localhost/olivetnews/public/" title="Olivet University General News">Home</a></li>
-                            	<?php foreach ($this->categories as $category):?>
-                                <li ><a href="category?categoryid=<?php echo $category->getId();?>" title="<?php echo "Olivet University ".$category->getName();?>"><?php echo $category->getName();?></a></li>
-                            <?php endforeach;?>
+                            	
+                                <li ><a href="admin_index.html" title="Olivet University Theology">Manage News</a></li>
+                                <li ><a href="admin_category.html" title="Olivet University Theology">Manage Categories</a></li>
+                                <li class="Current"><a href="index.html" title="Olivet University General News">Go to Frontend</a></li>
+				<li class="lastone"><a href="category.html?opt=ocb" title="Olivet University Business">Log Out</a></li>
                             </ul>
                         </div>
-                     
-            
-			<div id="NewsArchiev">
-                <?php $i=0;?>
-				<?php foreach($this->paginator as $post):
-                    $i=$i+1;
-                ?>  
-                           <?php if(($this->paginator->getCurrentPageNumber()==1)&&($i==1)):?>
-                 <div id="MainNewsBox">
                         
-            <img src="http://www.olivetuniversity.edu/images_articles/files//Architecture5.jpg" alt="Olivet to Establish New College of Architecture, Engineering and Construction"/>                   
-                        <h3><?php echo $post->getCreate_time();?></h3>
-                            <h2><a href="article.html"><a href="article.html"><?php echo $post->getTitle();?></a></h2>
-                            <h4><?php echo $post->getExcerpt();?> <a href="articles/2015/03/06/926/olivet-university-olivet-to-establish-new-college-of-architecture--engineering-and-construction.htm">Read more</a></h4>
-                                                        
+			<style>
+                            #MainNewsBox li{margin:10px 0}
+                             #MainNewsBox input,  #MainNewsBox select {
+                                padding: 1px;
+                                margin: 0;
+                                font-size: 12pt;
+                                border: 1px solid #7F9DB9;
+                              }
+                        </style>															<!-- MainNews Start -->
+                        <div id="MainNewsBox">
+                            <h2>Add Category</h2>
+                            <form action="admin_index.html">
+                            <table>
+                                <tr>
+                                    <th>Title</th>
+                                    <td><input /></td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <th>Image</th>
+                                    <td><input type="file"></td>
+                                </tr>
+				<tr>
+                                    <th>Position</th>
+                                    <td><input /></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td><input type="submit" /></td>
+                                </tr>
+                            </table>
+                            </form>
+                            <br/>
                         </div>
-            <?php else:?>          
-                        	 <h3><?php echo $post->getCreate_time();?></h3>
-                           <h2><a href="article.html"><?php echo $post->getTitle();?></a></h2>
-                           <p><?php echo $post->getExcerpt();?></p>
+                        <!-- NewsArcheive End -->
+                        <!-- Numbering Start -->
+                        <ul class="NewsNumbering">
+							 <li ><a class='actives' href="/index.htm?page=1"><b>1</b></a></li>  <li><a href="/index.htm?page=2">2</a></li>		 <li><a href="/index.htm?page=3">3</a></li>		 <li><a href="/index.htm?page=4">4</a></li>		 <li><a href="/index.htm?page=5">5</a></li>		 <li><a href="/index.htm?page=6">6</a></li>		 <li><a href="/index.htm?page=7">7</a></li>		 <li><a href="/index.htm?page=8">8</a></li>		<li><a href="/index.htm?page=9">Next ></a></li> 				       	</ul>
+                        <!-- Numbering End -->
+                        <div class="clear"></div>
+                        <br/>
                         
-			<?php endif;?>			   
-        <?php endforeach;?>
-                        
-			</div>
-                        
-                        
+                        <a href="admin_add.html">Add News</a>
                     </div>
                     <div id="ConRight">
                     	<div id="SocialBox">
