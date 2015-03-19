@@ -18,7 +18,6 @@ class IndexController extends AbstractActionController
 		$paginator = $postService->fetchAll(true);
 		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
 		$paginator->setItemCountPerPage(2);
-     	
 		return array('categories'=>$categories,'paginator'=>$paginator);
     }
    
