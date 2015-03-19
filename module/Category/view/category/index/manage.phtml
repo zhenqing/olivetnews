@@ -1,3 +1,4 @@
+
     <!-- Contents Start -->
     <div id="ConWrapLeft">
     	<div id="ConWrapRight">
@@ -17,46 +18,50 @@
                         
 			<style>
                             #MainNewsBox li{margin:10px 0}
-                             #MainNewsBox input,  #MainNewsBox select {
-                                padding: 1px;
-                                margin: 0;
-                                font-size: 12pt;
-                                border: 1px solid #7F9DB9;
-                              }
+                            
                         </style>															<!-- MainNews Start -->
                         <div id="MainNewsBox">
-                            <?php 
-                            $form->setAttribute('action', $this->url('category_add'));
-                            $form->prepare();
-                            echo $this->form()->openTag($form);
-                            echo $this->formHidden($form->get('csrf'));
-                            ?>
-    <div class="form-group">
-        <label>Name</label>
-        <?php echo $this->formInput($form->get('name'));?>
-        <span class="text-danger"><?php echo $this->formElementErrors($form->get('name'));?></span>
-    </div>
-    <div class="form-group">
-        <label >Image</label>
-        <?php echo $this->formFile($form->get('imgurl'));?>
-        <span class="text-danger"><?php echo $this->formElementErrors($form->get('imgurl'));?></span>
-    </div>
-    
-    <div class="form-group">
-        <label>Position</label>
-        <?php echo $this->formInput($form->get('position'));?>
-        <span class="text-danger"><?php echo $this->formElementErrors($form->get('position'));?></span>
-    </div>
-    
-    <button type="submit" class="btn btn-default">Submit</button>
-<?php echo $this->form()->closeTag();?>
-    
-                           
+                            <h2>News</h2>
+                            <ul>
+                                <?php foreach($this->paginator as $post):?>
+                                <li><a href="article.html"><?php echo $post->getTitle();?></a>
+                                - <a href="admin_edit.html">Edit</a> - <a href="admin_delete.html">Delete</a>
+                                </li>
+                                <?php endforeach;?>
+                                
+                            </ul>
                         </div>
                         <!-- NewsArcheive End -->
                         <!-- Numbering Start -->
-                        <ul class="NewsNumbering">
-							 <li ><a class='actives' href="/index.htm?page=1"><b>1</b></a></li>  <li><a href="/index.htm?page=2">2</a></li>		 <li><a href="/index.htm?page=3">3</a></li>		 <li><a href="/index.htm?page=4">4</a></li>		 <li><a href="/index.htm?page=5">5</a></li>		 <li><a href="/index.htm?page=6">6</a></li>		 <li><a href="/index.htm?page=7">7</a></li>		 <li><a href="/index.htm?page=8">8</a></li>		<li><a href="/index.htm?page=9">Next ></a></li> 				       	</ul>
+                         <?php
+
+ // add at the end of the file after the table
+
+ echo $this->paginationControl(
+
+     // the paginator object
+
+     $this->paginator,
+
+     // the scrolling style
+
+     'sliding',
+
+     // the partial to use to render the control
+
+     'partial/paginator.phtml',
+
+     // the route to link to when a user clicks a control link
+
+     array(
+
+         'route' => 'home'
+
+     )
+
+ );
+
+ ?>   
                         <!-- Numbering End -->
                         <div class="clear"></div>
                         <br/>
@@ -108,5 +113,4 @@
             </div>
         </div>
     </div>
-    <!-- Contents End -->
- 
+    

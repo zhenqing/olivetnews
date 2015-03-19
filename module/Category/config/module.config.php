@@ -90,6 +90,16 @@ return array(
                      ),
                  ),
              ),
+             'post_manage' => array(
+                 'type'    => 'Zend\Mvc\Router\Http\Literal',
+                 'options' => array(
+                     'route'    => '/manage',
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Index',
+                         'action'     => 'manage',
+                     ),
+                 ),
+             ),
          ),
      ),
      'view_manager' => array(
