@@ -26,10 +26,13 @@
 
     </head>
     <body>
-       
+       <?php include "header.phtml"; ?>
+
         <div>
             <?php echo $this->content; ?>
         </div> <!-- /container -->
         <?php echo $this->inlineScript() ?>
+        <?php include "footer.phtml";  ?>
+
     </body>
 </html>
