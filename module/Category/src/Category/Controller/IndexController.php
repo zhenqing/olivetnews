@@ -15,8 +15,11 @@ class IndexController extends AbstractActionController
         $categories->buffer();
 
     	$postService = $this->getServiceLocator()->get("Category\Model\PostTable");
-		$posts = $postService->fetchAll();
-		return array('categories'=>$categories,'posts'=>$posts);
+		$paginator = $postService->fetchAll(true);
+		$paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(2);
+     	
+		return array('categories'=>$categories,'paginator'=>$paginator);
     }
    
 }

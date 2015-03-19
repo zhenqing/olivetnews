@@ -4,10 +4,13 @@ use DomainException;
 use InvalidArgumentException;
 use Traversable;
 use Zend\Stdlib\ArrayUtils;
-
+use Category\Model\Post;
 use Application\Model\TableAbstract;
 use Zend\Db\TableGateway\TableGateway;
-
+use Zend\Db\Sql\Select;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Paginator\Adapter\DbSelect;
+use Zend\Paginator\Paginator;
 class PostTable{
 	
 	protected $tableGateway;
@@ -17,11 +20,38 @@ class PostTable{
 		$this->tableGateway = $tableGateway;
 	}
 	
-	function fetchAll() {
-		$select = $this->tableGateway->getSql()->select();
-		$select->order('create_time desc');
-		$select->limit(12);
-		return $this->tableGateway->selectWith($select);
+	function fetchAll($paginated=false) {
+		if($paginated){
+			$select = new Select('posts');
+			  $resultSetPrototype = new ResultSet();
+
+             $resultSetPrototype->setArrayObjectPrototype(new Post());
+               $paginatorAdapter = new DbSelect(
+
+                 // our configured select object
+
+                 $select,
+
+                 // the adapter to run it against
+
+                 $this->tableGateway->getAdapter(),
+
+                 // the result set to hydrate
+
+                 $resultSetPrototype
+
+             );
+
+             $paginator = new Paginator($paginatorAdapter);
+
+             return $paginator;
+		}else{
+			$select = $this->tableGateway->getSql()->select();
+			$select->order('create_time desc');
+			$select->limit(2);
+			return $this->tableGateway->selectWith($select);
+		}
+		
 	}
 	
 	

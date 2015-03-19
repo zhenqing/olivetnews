@@ -45,9 +45,11 @@
 			<!-- MainNav Start -->
                     	<div id="MainNav">
                             <ul>
-                            	<li class="Current"><a href="index.html" title="Olivet University General News">Home</a></li>
-                            	<?php foreach ($this->categories as $category):?>
-                                <li ><a href="category.html?opt=otcs" title="<?php echo "Olivet University ".$category->getName();?>"><?php echo $category->getName();?></a></li>
+                                <li><a href="http://localhost/olivetnews/public/" title="Olivet University General News">Home</a></li>
+                                <?php foreach ($this->categories as $category):?>
+                                <?php echo $category->getId();?>
+                                <?php echo $this->cat_id;?>
+                                <li class="<?php echo ($category->getId()==$this->cat_id)?"Current":"" ?>"><a href="category?categoryid=<?php echo $category->getId();?>" title="<?php echo "Olivet University ".$category->getName();?>"><?php echo $category->getName();?></a></li>
                             <?php endforeach;?>
                             </ul>
                         </div>
