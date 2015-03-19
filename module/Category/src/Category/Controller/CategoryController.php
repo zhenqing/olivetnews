@@ -23,14 +23,18 @@ class CategoryController extends AbstractActionController
   }
     public function indexAction()
     {
+
     	$cat_id=$this->params()->fromRoute('categoryid');
     	$categoryService = $this->getServiceLocator()->get("Category\Model\CategoryTable");
       $categories = $categoryService->fetchAll();
       $categories->buffer();
 
-    	$postService = $this->getServiceLocator()->get("Category\Model\CategoryTable");
-		  $posts = $postService->getCategorysByCategoryId($cat_id);
-		return array('categories'=>$categories,'cat_id'=>$cat_id,'posts'=>$posts);
+    	$postService = $this->getServiceLocator()->get("Category\Model\PostTable");
+		  $paginator = $postService->getPostsByCategoryId($cat_id,true);
+      $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
+    $paginator->setItemCountPerPage(2);
+		return array('categories'=>$categories,'cat_id'=>$cat_id,'paginator'=>$paginator);
+
     }
    public function manageAction()
     {

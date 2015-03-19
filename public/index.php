@@ -11,6 +11,6 @@ if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['RE
 ini_set('display_errors', 1);
 // Setup autoloading
 require 'init_autoloader.php';
-
+//$this->setBaseUrl('/mysubdir/zf-tutorial/public');
 // Run the application!
 Zend\Mvc\Application::init(require 'config/application.config.php')->run();

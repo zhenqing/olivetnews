@@ -55,12 +55,47 @@ class PostTable{
 	}
 	
 	
-	function getPostsByCategoryId($categoryId){
-		$select = $this->tableGateway->getSql()->select();
+	function getPostsByCategoryId($categoryId,$paginated=false){
+		if($paginated){
+			$select = new Select('posts');
+			if($categoryId != 0 ){
+			$select->where(array(
+				"category_id"=>$categoryId,
+				//"id"=>$id
+			));
+		}
+			  $resultSetPrototype = new ResultSet();
+
+             $resultSetPrototype->setArrayObjectPrototype(new Post());
+               $paginatorAdapter = new DbSelect(
+
+                 // our configured select object
+
+                 $select,
+
+                 // the adapter to run it against
+
+                 $this->tableGateway->getAdapter(),
+
+                 // the result set to hydrate
+
+                 $resultSetPrototype
+
+             );
+
+             $paginator = new Paginator($paginatorAdapter);
+
+             return $paginator;
+		}else{
+			$select = $this->tableGateway->getSql()->select();
+			$select->order('create_time desc');
+			$select->limit(2);
+			return $this->tableGateway->selectWith($select);
+			$select = $this->tableGateway->getSql()->select();
 		
 		if($categoryId != 0 ){
 			$select->where(array(
-				"category_id"=>array(3,4,5),
+				"category_id"=>$categoryId,
 				//"id"=>$id
 			));
 			
@@ -75,6 +110,8 @@ class PostTable{
 		//echo $select->getSqlString();
 		
 		return $this->tableGateway->selectWith($select);
+		}
+		
 	}
 	
 	

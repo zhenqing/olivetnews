@@ -20,9 +20,9 @@ return array(
                  ),
              ),
              'category_home' => array(
-                 'type'    => 'Zend\Mvc\Router\Http\Literal',
+                 'type'    => 'segment',
                  'options' => array(
-                     'route'    => '/category',
+                     'route'    => '/category/[:categoryid]',
                      'defaults' => array(
                          'controller' => 'Category\Controller\Category',
                          'action'     => 'index',

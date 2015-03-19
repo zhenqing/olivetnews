@@ -43,41 +43,71 @@
             	<div id="Contents">
                 	<div id="ConLeft">
 			<!-- MainNav Start -->
-                    	<div id="MainNav">
+                    <div id="MainNav">
                             <ul>
-                                <li><a href="http://localhost/olivetnews/public/" title="Olivet University General News">Home</a></li>
+                                <li class="Current"><a href="http://localhost/olivetnews/public/" title="Olivet University General News">Home</a></li>
                                 <?php foreach ($this->categories as $category):?>
-                                <?php echo $category->getId();?>
-                                <?php echo $this->cat_id;?>
-                                <li class="<?php echo ($category->getId()==$this->cat_id)?"Current":"" ?>"><a href="category?categoryid=<?php echo $category->getId();?>" title="<?php echo "Olivet University ".$category->getName();?>"><?php echo $category->getName();?></a></li>
+                                <li ><a href="category/<?php echo $category->getId();?>" title="<?php echo "Olivet University ".$category->getName();?>"><?php echo $category->getName();?></a></li>
                             <?php endforeach;?>
                             </ul>
                         </div>
-                        <!-- MainNav End -->
-																		<!-- MainNews Start -->
-                        <div id="MainNewsBox">
                         
-			<img src="http://www.olivetuniversity.edu/images_articles/files//Architecture5.jpg" alt="Olivet to Establish New College of Architecture, Engineering and Construction"/>					
-                        <h3>03 06, 2015</h3>
-                            <h2><a href="article.html">Olivet to Establish New College of Architecture, Engineering and Construction</a></h2>
-                            <h4>The Association for Biblical Higher Education (ABHE) has decided to approve Olivet University&#039;s plans to establish a new College of Architectur, Engineering and Construction, starting with a bachelor&#039;s degree in civil engineering. <a href="articles/2015/03/06/926/olivet-university-olivet-to-establish-new-college-of-architecture--engineering-and-construction.htm">Read more</a></h4>
-                            							
+                     
+            
+            <div id="NewsArchiev">
+                <?php $i=0;?>
+                <?php foreach($this->paginator as $post):
+                    $i=$i+1;
+                ?>  
+                           <?php if(($this->paginator->getCurrentPageNumber()==1)&&($i==1)):?>
+                 <div id="MainNewsBox">
+                        
+            <img src="http://www.olivetuniversity.edu/images_articles/files//Architecture5.jpg" alt="Olivet to Establish New College of Architecture, Engineering and Construction"/>                   
+                        <h3><?php echo $post->getCreate_time();?></h3>
+                            <h2><a href="article.html"><a href="article.html"><?php echo $post->getTitle();?></a></h2>
+                            <h4><?php echo $post->getExcerpt();?> <a href="articles/2015/03/06/926/olivet-university-olivet-to-establish-new-college-of-architecture--engineering-and-construction.htm">Read more</a></h4>
+                                                        
                         </div>
-                        <!-- MainNews End -->
-													<!-- NewsArcheive Start -->
-			<div id="NewsArchiev">
-						   <?php foreach($this->posts as $post):?>                     
-                        	 <h3><?php echo $post->getCreate_time();?></h3>
+            <?php else:?>          
+                             <h3><?php echo $post->getCreate_time();?></h3>
                            <h2><a href="article.html"><?php echo $post->getTitle();?></a></h2>
-                           <p><?php echo $post->getContent();?></p>
+                           <p><?php echo $post->getExcerpt();?></p>
                         
-						   <?php endforeach;?>
+            <?php endif;?>             
+        <?php endforeach;?>
                         
 												</div>
                         <!-- NewsArcheive End -->
                         <!-- Numbering Start -->
-                        <ul class="NewsNumbering">
-							 <li ><a class='actives' href="/index.htm?page=1"><b>1</b></a></li>  <li><a href="/index.htm?page=2">2</a></li>		 <li><a href="/index.htm?page=3">3</a></li>		 <li><a href="/index.htm?page=4">4</a></li>		 <li><a href="/index.htm?page=5">5</a></li>		 <li><a href="/index.htm?page=6">6</a></li>		 <li><a href="/index.htm?page=7">7</a></li>		 <li><a href="/index.htm?page=8">8</a></li>		<li><a href="/index.htm?page=9">Next ></a></li> 				       	</ul>
+                      <?php
+
+ // add at the end of the file after the table
+
+ echo $this->paginationControl(
+
+     // the paginator object
+
+     $this->paginator,
+
+     // the scrolling style
+
+     'sliding',
+
+     // the partial to use to render the control
+
+     'partial/paginator.phtml',
+
+     // the route to link to when a user clicks a control link
+
+     array(
+
+         'route' => 'category_home'
+
+     )
+
+ );
+
+ ?>   
                         <!-- Numbering End -->
                         
                         
