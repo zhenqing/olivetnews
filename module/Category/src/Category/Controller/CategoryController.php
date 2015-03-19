@@ -47,7 +47,7 @@ class CategoryController extends AbstractActionController
     public function addAction(){
       $form = new CategoryForm();
     
-    if($this->getRequest()->isCategory()){
+    if($this->getRequest()->isPost()){
       $this->_initCategory();
       $this->saveCategoryFromCategory($form);
     }
@@ -59,7 +59,7 @@ class CategoryController extends AbstractActionController
    * Save the category after user submission
    */
   protected function saveCategoryFromCategory($form){
-    $data = $this->getRequest()->getCategory();
+    $data = $this->getRequest()->getPost();
       //@todo: validate the data
     $form->setData($data);
         if ($form->isValid()) {
@@ -103,7 +103,7 @@ class CategoryController extends AbstractActionController
 
          $request = $this->getRequest();
          if ($request->isPost()) {
-             $form->setInputFilter($category->getInputFilter());
+             //$form->setInputFilter($category->getInputFilter());
              $form->setData($request->getPost());
 
              if ($form->isValid()) {
@@ -121,8 +121,8 @@ class CategoryController extends AbstractActionController
   }
   public function deleteAction(){
     $this->_initCategory();
-    $categoryTable = $this->getServiceLocator()->get("Blog\Model\BlogTable");
-    $categoryTable->deleteBlog($this->category);
+    $categoryTable = $this->getServiceLocator()->get("Category\Model\CategoryTable");
+    $categoryTable->deleteCategory($this->category);
     $this->redirect()->toRoute('category_home');
   }
   public function viewAction()

@@ -1,22 +1,21 @@
-
     <!-- Contents Start -->
     <div id="ConWrapLeft">
-    	<div id="ConWrapRight">
-        	<div id="ContentsWrapper">
-            	<div id="Contents">
-                	<div id="ConLeft">
-			
+        <div id="ConWrapRight">
+            <div id="ContentsWrapper">
+                <div id="Contents">
+                    <div id="ConLeft">
+            
                         <div id="MainNav">
                             <ul>
-                            	
-                                 <li ><a href="admin_index.html" title="Olivet University Theology">Manage News</a></li>
+                                
+                                <li ><a href="admin_index.html" title="Olivet University Theology">Manage News</a></li>
                                 <li ><a href="admin_category.html" title="Olivet University Theology">Manage Categories</a></li>
                                 <li class="Current"><a href="index.html" title="Olivet University General News">Go to Frontend</a></li>
-				<li class="lastone"><a href="category.html?opt=ocb" title="Olivet University Business">Log Out</a></li>
+                <li class="lastone"><a href="category.html?opt=ocb" title="Olivet University Business">Log Out</a></li>
                             </ul>
                         </div>
                         
-			<style>
+            <style>
                             #MainNewsBox li{margin:10px 0}
                              #MainNewsBox input,  #MainNewsBox select {
                                 padding: 1px;
@@ -24,23 +23,15 @@
                                 font-size: 12pt;
                                 border: 1px solid #7F9DB9;
                               }
-                        </style>															<!-- MainNews Start -->
+                        </style>                                                            <!-- MainNews Start -->
                         <div id="MainNewsBox">
-                            <h2>Edit Category</h2>
                             <?php 
-                            $form->setAttribute('action', $this->url('category_edit',
-                                array(
-                                    'action'=>'edit',
-                                    'id'=>$this->id,
-                                    )
-                                ));
+                            $form->setAttribute('action', $this->url('category_add'));
                             $form->prepare();
                             echo $this->form()->openTag($form);
                             echo $this->formHidden($form->get('csrf'));
-                            // $this->form()->setDefault('name',$this->category->getName());
                             ?>
     <div class="form-group">
-        <?php echo $this->formHidden($form->get('id'));?>
         <label>Name</label>
         <?php echo $this->formInput($form->get('name'));?>
         <span class="text-danger"><?php echo $this->formElementErrors($form->get('name'));?></span>
@@ -59,12 +50,13 @@
     
     <button type="submit" class="btn btn-default">Submit</button>
 <?php echo $this->form()->closeTag();?>
-                            <br/>
+    
+                           
                         </div>
                         <!-- NewsArcheive End -->
                         <!-- Numbering Start -->
                         <ul class="NewsNumbering">
-							 <li ><a class='actives' href="/index.htm?page=1"><b>1</b></a></li>  <li><a href="/index.htm?page=2">2</a></li>		 <li><a href="/index.htm?page=3">3</a></li>		 <li><a href="/index.htm?page=4">4</a></li>		 <li><a href="/index.htm?page=5">5</a></li>		 <li><a href="/index.htm?page=6">6</a></li>		 <li><a href="/index.htm?page=7">7</a></li>		 <li><a href="/index.htm?page=8">8</a></li>		<li><a href="/index.htm?page=9">Next ></a></li> 				       	</ul>
+                             <li ><a class='actives' href="/index.htm?page=1"><b>1</b></a></li>  <li><a href="/index.htm?page=2">2</a></li>      <li><a href="/index.htm?page=3">3</a></li>      <li><a href="/index.htm?page=4">4</a></li>      <li><a href="/index.htm?page=5">5</a></li>      <li><a href="/index.htm?page=6">6</a></li>      <li><a href="/index.htm?page=7">7</a></li>      <li><a href="/index.htm?page=8">8</a></li>     <li><a href="/index.htm?page=9">Next ></a></li>                         </ul>
                         <!-- Numbering End -->
                         <div class="clear"></div>
                         <br/>
@@ -72,8 +64,8 @@
                         <a href="admin_add.html">Add News</a>
                     </div>
                     <div id="ConRight">
-                    	<div id="SocialBox">
-                        	<ul>
+                        <div id="SocialBox">
+                            <ul>
                                 <li class="img00"><a href="http://www.facebook.com/TheOlivetUniversity" target="_blank" title="Olivet University Facebook"></a></li>
                                 <li class="img01"><a href="https://twitter.com/#!/OlivetUniv" target="_blank" title="Olivet University Twitter"></a></li>
                                 <li class="img02"><a href="http://www.flickr.com/photos/olivetuniversity" target="_blank" title="Olivet University Flickr"></a></li>
@@ -83,12 +75,12 @@
                             </ul>
                         </div>
                         <!-- <div class="RightInfo">
-                        	<p>Olivet University is a warm and friendly place to pursue a serious Christian education. Olivet University students come from a wide range of age groups, geographical areas, educational backgrounds, and cultural heritages, creating a rich and challenging educational environment.</p>
+                            <p>Olivet University is a warm and friendly place to pursue a serious Christian education. Olivet University students come from a wide range of age groups, geographical areas, educational backgrounds, and cultural heritages, creating a rich and challenging educational environment.</p>
                         </div> -->
                         <div class="RightInfo">
-                        	<h2>Olivet University Colleges</h2>
+                            <h2>Olivet University Colleges</h2>
                             <ul>
-                            	<li><a href="http://otcs.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet Theological College & Seminary">Olivet Theological College &amp; Seminary</a></li>
+                                <li><a href="http://otcs.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet Theological College & Seminary">Olivet Theological College &amp; Seminary</a></li>
                                 <li><a href="http://jcm.olivetuniversity.edu/" target="_blank" title="Olivet University, Jubilee College of Music">Jubilee College of Music</a></li>
                                 <li><a href="http://ocj.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet College of Journalism">Olivet College of Journalism</a></li>
                                 <li><a href="http://ocad.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet College of Art & Design">Olivet College of Art &amp; Design</a></li>
@@ -99,9 +91,9 @@
                             </ul>
                         </div>
                         <div class="RightInfo">
-                        	<h2>Olivet University Features</h2>
+                            <h2>Olivet University Features</h2>
                             <ul>
-                            	<li><a href="http://www.olivetuniversity.edu/library/" target="_blank" title="Olivet University Ralph D. Winter library">Ralph D. Winter library</a></li>
+                                <li><a href="http://www.olivetuniversity.edu/library/" target="_blank" title="Olivet University Ralph D. Winter library">Ralph D. Winter library</a></li>
                                 <li><a href="http://www.olivetuniversity.edu/donation/" target="_blank" title="Give to Olivet University">Give to Olivet University</a></li>
                                 <li><a href="http://olivetyou.com/" target="_blank" title="Olivet University You">Olivet You</a></li>
                                 <li><a href="http://olivettheology.com/" target="_blank" title="Olivet University Seminary Blog">Olivet University Seminary Blog</a></li>
@@ -117,3 +109,4 @@
         </div>
     </div>
     <!-- Contents End -->
+ 

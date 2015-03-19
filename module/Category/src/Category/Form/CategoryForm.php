@@ -71,7 +71,15 @@ class CategoryForm extends Form
             ),
         ));
     }
-    
+      public function addElements()
+    {
+        // File Input
+        $file = new Element\File('image-file');
+        $file->setLabel('Avatar Image Upload')
+             ->setAttribute('id', 'image-file');
+        $this->add($file);
+    }
+
      // public function getInputFilterSpecification()
      // {
      //     return array(

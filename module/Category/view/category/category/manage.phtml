@@ -23,8 +23,8 @@
 			    <h2>Categories</h2>
                             <ul>
                             	<?php foreach($this->categories as $category):?>
-                                <li><a href="article.html"><?php echo $category->getName();?></a>
-                                - <a href="admin_edit_category.html">Edit</a> - <a href="">Delete</a>
+                                <li><a><?php echo $category->getName();?></a>
+                                - <a href="<?php $this->url("category_edit");?>">Edit</a> - <a href="<?php $this->url("category_delete");?>">Delete</a>
                                 </li>
                                 <?php endforeach;?>
                                 

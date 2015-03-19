@@ -27,4 +27,8 @@ class Category{
 	public function getImgurl(){
 		return $this->imgurl;
 	}
+	public function getArrayCopy()
+{
+    return get_object_vars($this);
+}
 }
