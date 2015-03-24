@@ -37,9 +37,6 @@ CREATE  TABLE IF NOT EXISTS `olivetnews`.`admins` (
   PRIMARY KEY (`id`) )
 ENGINE = InnoDB;
 
-
-
-
 INSERT INTO `olivetnews`.`categories` (`id`, `name`, `position`, `imgurl`) VALUES ('3', 'Journalism', '3', NULL), ('4', 'Art&Design', '4', NULL),('5', 'IT', '5', NULL), ('6', 'Business', '6', NULL);
 
 
