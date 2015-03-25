@@ -32,7 +32,7 @@ class Module
         return array(
             'factories'=>array(
         'Admin\Model\MyAuthStorage' => function($sm){
-            return new \Admin\Model\MyAuthStorage('zf_tutorial');  
+            return new \Admin\Model\MyAuthStorage('olivetnews');  
         },
          
         'AuthService' => function($sm) {

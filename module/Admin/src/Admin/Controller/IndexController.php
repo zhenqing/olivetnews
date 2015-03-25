@@ -28,7 +28,7 @@ class IndexController extends AbstractActionController
     {
         if (! $this->storage) {
             $this->storage = $this->getServiceLocator()
-                                  ->get('SanAuth\Model\MyAuthStorage');
+                                  ->get('Admin\Model\MyAuthStorage');
         }
          
         return $this->storage;
@@ -101,8 +101,12 @@ class IndexController extends AbstractActionController
     {
         $this->getSessionStorage()->forgetMe();
         $this->getAuthService()->clearIdentity();
-         
+        echo "logged out";
         $this->flashmessenger()->addMessage("You've been logged out");
-        return $this->redirect()->toRoute('login');
+        die();
+        return array(
+            'messages'  => $this->flashmessenger()->getMessages()
+        );
+        //return $this->redirect()->toRoute('/admin/login');
     }
 }
