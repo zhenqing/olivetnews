@@ -79,6 +79,54 @@ class PostController extends AbstractActionController
           
         }
   }
-   
+       public function editAction()
+  {
+     $id = (int) $this->params()->fromRoute('id', 0);
+         if (!$id) {
+             return $this->redirect()->toRoute('post', array(
+                 'action' => 'add'
+             ));
+         }
+         $postTable = $this->getServiceLocator()->get("Category\Model\PostTable");
+          
+         // Get the Album with the specified id.  An exception is thrown
+         // if it cannot be found, in which case go to the index page.
+         try {
+           $post = $postTable->getById($id);
+         }
+         catch (\Exception $ex) {
+             return $this->redirect()->toRoute('post', array(
+                 'action' => 'index'
+             ));
+         }
+
+         $form  = new PostForm();
+         $form->bind($post);
+         $form->get('submit')->setAttribute('value', 'Edit');
+
+         $request = $this->getRequest();
+         if ($request->isPost()) {
+             //$form->setInputFilter($category->getInputFilter());
+             $form->setData($request->getPost());
+
+             if ($form->isValid()) {
+                 $postTable->savePost($post);
+
+                 // Redirect to list of albums
+                 return $this->redirect()->toRoute('post');
+             }
+         }
+
+         return array(
+             'id' => $id,
+             'form' => $form,
+         );
+  }
+  public function deleteAction(){
+    $this->_initPost();
+    $PostTable = $this->getServiceLocator()->get("Category\Model\PostTable");
+    $PostTable->deletePost($this->post);
+    $this->redirect()->toRoute('home');
+  }
    
 }

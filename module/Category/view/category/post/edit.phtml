@@ -1,0 +1,127 @@
+    <!-- Contents Start -->
+    <div id="ConWrapLeft">
+    	<div id="ConWrapRight">
+        	<div id="ContentsWrapper">
+            	<div id="Contents">
+                	<div id="ConLeft">
+			
+                        <div id="MainNav">
+                            <ul>
+                            	
+                                <li ><a href="admin_index.html" title="Olivet University Theology">Manage News</a></li>
+                                <li ><a href="admin_category.html" title="Olivet University Theology">Manage Categories</a></li>
+                                <li class="Current"><a href="index.html" title="Olivet University General News">Go to Frontend</a></li>
+				<li class="lastone"><a href="category.html?opt=ocb" title="Olivet University Business">Log Out</a></li>
+                            </ul>
+                        </div>
+                        
+			<style>
+                            #MainNewsBox li{margin:10px 0}
+                             #MainNewsBox input,  #MainNewsBox select {
+                                padding: 1px;
+                                margin: 0;
+                                font-size: 12pt;
+                                border: 1px solid #7F9DB9;
+                              }
+                        </style>															<!-- MainNews Start -->
+                        <div id="MainNewsBox">
+                            <?php 
+                            $form->setAttribute('action', $this->url('post_add'));
+                            $form->prepare();
+                            echo $this->form()->openTag($form);
+                            echo $this->formHidden($form->get('csrf'));
+                            ?>
+    <div class="form-group">
+        <label>Name</label>
+        <?php echo $this->formInput($form->get('title'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('title'));?></span>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <?php echo $this->formInput($form->get('content'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('content'));?></span>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <?php echo $this->formInput($form->get('author'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('author'));?></span>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <?php echo $this->formInput($form->get('category_name'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('category_name'));?></span>
+    </div>
+    <div class="form-group">
+        <label >Image</label>
+        <?php echo $this->formFile($form->get('imgurl'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('imgurl'));?></span>
+    </div>
+    
+   <div class="form-group">
+        <label>Status</label>
+        <?php echo $this->formInput($form->get('status'));?>
+        <span class="text-danger"><?php echo $this->formElementErrors($form->get('status'));?></span>
+    </div>
+    
+    <button type="submit" class="btn btn-default">Submit</button>
+<?php echo $this->form()->closeTag();?>
+    
+                           
+                        </div>
+                        <!-- NewsArcheive End -->
+                        <!-- Numbering Start -->
+                        <ul class="NewsNumbering">
+							 <li ><a class='actives' href="/index.htm?page=1"><b>1</b></a></li>  <li><a href="/index.htm?page=2">2</a></li>		 <li><a href="/index.htm?page=3">3</a></li>		 <li><a href="/index.htm?page=4">4</a></li>		 <li><a href="/index.htm?page=5">5</a></li>		 <li><a href="/index.htm?page=6">6</a></li>		 <li><a href="/index.htm?page=7">7</a></li>		 <li><a href="/index.htm?page=8">8</a></li>		<li><a href="/index.htm?page=9">Next ></a></li> 				       	</ul>
+                        <!-- Numbering End -->
+                        <div class="clear"></div>
+                        <br/>
+                        
+                        <a href="admin_add.html">Add News</a>
+                    </div>
+                    <div id="ConRight">
+                    	<div id="SocialBox">
+                        	<ul>
+                                <li class="img00"><a href="http://www.facebook.com/TheOlivetUniversity" target="_blank" title="Olivet University Facebook"></a></li>
+                                <li class="img01"><a href="https://twitter.com/#!/OlivetUniv" target="_blank" title="Olivet University Twitter"></a></li>
+                                <li class="img02"><a href="http://www.flickr.com/photos/olivetuniversity" target="_blank" title="Olivet University Flickr"></a></li>
+                                <li class="img03"><a href="https://plus.google.com/116414237970966818430/" target="_blank" title="Olivet University Google Plus"></a></li>
+                                <li class="img04"><a href="http://www.youtube.com/OlivetUniv" target="_blank" title="Olivet University Youtube"></a></li>
+                                <li class="img05"><a href="http://www.olivetnews.com/rss.php" target="_blank" title="Olivet University RSS"></a></li>
+                            </ul>
+                        </div>
+                        <!-- <div class="RightInfo">
+                        	<p>Olivet University is a warm and friendly place to pursue a serious Christian education. Olivet University students come from a wide range of age groups, geographical areas, educational backgrounds, and cultural heritages, creating a rich and challenging educational environment.</p>
+                        </div> -->
+                        <div class="RightInfo">
+                        	<h2>Olivet University Colleges</h2>
+                            <ul>
+                            	<li><a href="http://otcs.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet Theological College & Seminary">Olivet Theological College &amp; Seminary</a></li>
+                                <li><a href="http://jcm.olivetuniversity.edu/" target="_blank" title="Olivet University, Jubilee College of Music">Jubilee College of Music</a></li>
+                                <li><a href="http://ocj.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet College of Journalism">Olivet College of Journalism</a></li>
+                                <li><a href="http://ocad.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet College of Art & Design">Olivet College of Art &amp; Design</a></li>
+                                <li><a href="http://oit.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet Institute of Technology">Olivet Institute of Technology</a></li>
+                                <li><a href="http://ocle.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet College of Language Education">Olivet College of Language Education</a></li>
+                                <li><a href="http://ocb.olivetuniversity.edu/" target="_blank" title="Olivet University, Olivet College of Business">Olivet College of Business</a></li>
+                                <li><a href="http://www.olivetuniversity.edu/zinzendorf/" target="_blank" title="Olivet University, Zinzendorf School of Doctoral Studies">Zinzendorf School of Doctoral Studies</a></li>
+                            </ul>
+                        </div>
+                        <div class="RightInfo">
+                        	<h2>Olivet University Features</h2>
+                            <ul>
+                            	<li><a href="http://www.olivetuniversity.edu/library/" target="_blank" title="Olivet University Ralph D. Winter library">Ralph D. Winter library</a></li>
+                                <li><a href="http://www.olivetuniversity.edu/donation/" target="_blank" title="Give to Olivet University">Give to Olivet University</a></li>
+                                <li><a href="http://olivetyou.com/" target="_blank" title="Olivet University You">Olivet You</a></li>
+                                <li><a href="http://olivettheology.com/" target="_blank" title="Olivet University Seminary Blog">Olivet University Seminary Blog</a></li>
+                                <li><a href="http://olivetjubileemusic.com/" target="_blank" title="Olivet University Jubilee Music Blog">Olivet University Jubilee Music Blog</a></li>
+                                <li><a href="http://olivetjournalism.com/" target="_blank" title="Olivet University Journalism Blog">Olivet Journalism Blog</a></li>
+                                <li><a href="http://olivetartdesign.com/" target="_blank" title="Olivet University Art & Design Blog">Olivet Art &amp; Design Blog</a></li>
+                                <li><a href="http://olivettech.com/" target="_blank" title="Olivet University Institute of Technology Blog">Olivet Institute of Technology Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contents End -->
+ 

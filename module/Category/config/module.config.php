@@ -110,6 +110,32 @@ return array(
                      ),
                  ),
              ),
+             'post_edit' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/post/edit/[:id]',
+                        'constraints'=>array(
+                        'id'=>'[0-9]+'
+                        ),
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Post',
+                         'action'     => 'edit',
+                     ),
+                 ),
+             ),
+             'post_delete' => array(
+                 'type'    => 'segment',
+                 'options' => array(
+                     'route'    => '/post/delete/[:id]',
+                        'constraints'=>array(
+                        'id'=>'[0-9]+'
+                        ),
+                     'defaults' => array(
+                         'controller' => 'Category\Controller\Post',
+                         'action'     => 'delete',
+                     ),
+                 ),
+             ),
          ),
      ),
      'view_manager' => array(

@@ -9,10 +9,10 @@
                         <div id="MainNav">
                             <ul>
                             	
-                                <li ><a href="admin_index.html" title="Olivet University Theology">Manage News</a></li>
-                                <li ><a href="admin_category.html" title="Olivet University Theology">Manage Categories</a></li>
-                                <li class="Current"><a href="index.html" title="Olivet University General News">Go to Frontend</a></li>
-				<li class="lastone"><a href="category.html?opt=ocb" title="Olivet University Business">Log Out</a></li>
+                                <li ><a href="/manage" title="Olivet University Theology">Manage News</a></li>
+                                <li ><a href="/category/manage" title="Olivet University Theology">Manage Categories</a></li>
+                                <li class="Current"><a href="/" title="Olivet University General News">Go to Frontend</a></li>
+				<li class="lastone"><a href="/admin/logout" title="Olivet University Business">Log Out</a></li>
                             </ul>
                         </div>
                         
@@ -24,8 +24,8 @@
                             <h2>News</h2>
                             <ul>
                                 <?php foreach($this->paginator as $post):?>
-                                <li><a href="article.html"><?php echo $post->getTitle();?></a>
-                                - <a href="admin_edit.html">Edit</a> - <a href="admin_delete.html">Delete</a>
+                                <li><a href="/post/view/<?php echo $post->getId(); ?>"><?php echo $post->getTitle();?></a>
+                                - <a href="/post/edit/<?php echo $post->getId(); ?>">Edit</a> - <a href="/post/delete/<?php echo $post->getId(); ?>">Delete</a>
                                 </li>
                                 <?php endforeach;?>
                                 
